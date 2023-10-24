@@ -25,7 +25,7 @@ Kubecost requires the following minimum versions:
 
 ### Disable node-exporter and kube-state-metrics (recommended)
 
-If you have node-exporter and/or KSM running on your cluster, follow this step to disable the Kubecost included versions. Additional detail on [KSM requirements](architecture/sub/ksm-metrics.md).
+If you have node-exporter and/or KSM running on your cluster, follow this step to disable the Kubecost included versions. Additional detail on [KSM requirements](architecture/ksm-metrics.md).
 
 {% hint style="info" %}
 In contrast to our recommendation above, we do recommend disabling the Kubecost's node-exporter and kube-state-metrics if you already have them running in your cluster.
@@ -46,17 +46,19 @@ helm upgrade --install kubecost \
 This process is not recommended. Before continuing, review the [Bring your own Prometheus](https://docs.kubecost.com/install-and-configure/install/custom-prom#bring-your-own-prometheus) section if you haven't already.
 {% endhint %}
 
-1.  Pass the following parameters in your Helm install:
+1. Pass the following parameters in your Helm install:
 
-    {% code overflow="wrap" %}
-    ```
-    helm upgrade --install kubecost \
-      --repo https://kubecost.github.io/cost-analyzer/ cost-analyzer \
-      --namespace kubecost --create-namespace \
-      --set global.prometheus.fqdn=http://<prometheus-server-service-name>.<prometheus-server-namespace>.svc:<port> \
-      --set global.prometheus.enabled=false
-    ```
-    {% endcode %}
+{% code overflow="wrap" %}
+````
+```
+helm upgrade --install kubecost \
+  --repo https://kubecost.github.io/cost-analyzer/ cost-analyzer \
+  --namespace kubecost --create-namespace \
+  --set global.prometheus.fqdn=http://<prometheus-server-service-name>.<prometheus-server-namespace>.svc:<port> \
+  --set global.prometheus.enabled=false
+```
+````
+{% endcode %}
 
 {% hint style="info" %}
 The FQDN can be a full path via `https://prometheus-prod-us-central-x.grafana.net/api/prom/` if you use Grafana Cloud-managed Prometheus. Learn more in the [Grafana Cloud Integration for Kubecost](grafana-cloud-integration.md) doc.
@@ -114,7 +116,7 @@ prometheusRule:
 
 To confirm this job is successfully scraped by Prometheus, you can view the Targets page in Prometheus and look for a job named `kubecost`.
 
-![Prometheus Targets](/images/prom-targets.png)
+![Prometheus Targets](images/prom-targets.png)
 
 ### Node exporter metric labels
 
@@ -147,16 +149,16 @@ In order to distinguish between multiple clusters, Kubecost needs to know the la
 By default, metric retention is 91 days, however the retention of data can be further increased with a configurable value for a property `etlDailyStoreDurationDays`. You can find this value [here](https://github.com/kubecost/cost-analyzer-helm-chart/blob/9f3d7974247bfd3910fbf69d0d4bd66f1335201a/cost-analyzer/values.yaml#L340).
 
 {% hint style="warning" %}
-Increasing the default `etlDailyStorageDurationDays` value will naturally result in greater memory usage. At higher values, this can cause errors when trying to display this information in the Kubecost UI. You can remedy this by increasing the [Step size](/troubleshooting/diagnostics.md) when using the Allocations dashboard.
+Increasing the default `etlDailyStorageDurationDays` value will naturally result in greater memory usage. At higher values, this can cause errors when trying to display this information in the Kubecost UI. You can remedy this by increasing the [Step size](troubleshooting/diagnostics.md) when using the Allocations dashboard.
 {% endhint %}
 
 ## Troubleshooting
 
 The Diagnostics page (_Settings > View Full Diagnostics_) provides diagnostic info on your integration. Scroll down to Prometheus Status to verify that your configuration is successful.
 
-![Prometheus status diagnostic](/images/prom-status.png)
+![Prometheus status diagnostic](images/prom-status.png)
 
-Below you can find solutions to common Prometheus configuration problems. View the [Kubecost Diagnostics](/troubleshooting/diagnostics.md) doc for more information.
+Below you can find solutions to common Prometheus configuration problems. View the [Kubecost Diagnostics](troubleshooting/diagnostics.md) doc for more information.
 
 ### Misconfigured Prometheus FQDN
 

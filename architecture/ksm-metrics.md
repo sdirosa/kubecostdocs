@@ -43,7 +43,7 @@ The following table shows all KSM metrics required by and implemented in the cos
 Disabling the KSM deployment is not recommended, and will require higher up-time on the Kubecost cost-model to ensure accuracy of Kubecost data.
 {% endhint %}
 
-One of the more obvious questions here is: _"If the metrics you are emitting cover all of the KSM requirements, could the KSM deployment be dropped?"_ The long-term plan is to drop our dependency on KSM, and while it is possible to omit the KSM deployment today, doing so would require higher up-time on the cost-model to ensure the accuracy of these metrics. Part of reaching this long-term goal requires the deployment of a pod responsible for all Kubecost metric emissions separate from the cost-model to ensure reliability and high uptime.&#x20;
+One of the more obvious questions here is: _"If the metrics you are emitting cover all of the KSM requirements, could the KSM deployment be dropped?"_ The long-term plan is to drop our dependency on KSM, and while it is possible to omit the KSM deployment today, doing so would require higher up-time on the cost-model to ensure the accuracy of these metrics. Part of reaching this long-term goal requires the deployment of a pod responsible for all Kubecost metric emissions separate from the cost-model to ensure reliability and high uptime.
 
 ```yaml
 prometheus.kube-state-metrics:
