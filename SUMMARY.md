@@ -147,7 +147,7 @@
 * [OpenCost Product Comparison](architecture/opencost-product-comparison.md)
 * [Kubecost Metrics](architecture/user-metrics.md)
 * [Kube-State-Metrics (KSM) Emission](architecture/ksm-metrics.md)
-* [Calculating Node Pricing](architecture/node-pricing.md)
+* [Calculating Node Pricing](architecture/sub/node-pricing.md)
 * [Open-Source](architecture/open-source-deps.md)
 * [Security and Data Protection](architecture/security.md)
 * [Ports](architecture/ports.md)
